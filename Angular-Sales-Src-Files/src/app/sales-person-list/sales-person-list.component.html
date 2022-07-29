@@ -1,0 +1,69 @@
+<!-- 
+{{name}}
+
+<p>Sales person list</p>
+
+FirstName : {{s1.firstName}}
+LastName = {{s1.lastName}} -->
+<div class="container mt-5 mb-5">
+<table  class="table">
+    <thead>
+
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>salary</th>
+            <th>Sales volume</th>
+            <th>Sales volume > 3000?</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        <tr *ngFor="let person of salesPersonList"
+         [ngClass] ="{'metQuote' : person.salesVolume >= 3000, 'nonMetQuote' : person.salesVolume < 3000}">
+            <td>{{person.firstName}}</td>
+            <td>{{person.lastName}}</td>
+            <td>{{person.email}}</td>
+            <td>{{person.salary}}</td>
+            <td>{{person.salesVolume}}</td>
+            <td>
+            <div *ngIf="person.salesVolume >3000; else elseBlock">YES</div> 
+            <ng-template #elseBlock>NO</ng-template>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+</div>
+
+
+
+<div class="container mt-5 mb-5">
+<form #SPForm="ngForm" (ngSubmit)="onSubmit(salesPersonModel)">
+
+    <div class="form-group row"> <label class="col-sm-2 col-form-label">FirstName</label>
+        <div class="col-sm-10"> <input type="text" name="firstname" [(ngModel)]="salesPersonModel.firstName"> </div>
+    </div>
+
+    <div class="form-group row"> <label class="col-sm-2 col-form-label">LastName</label>
+        <div class="col-sm-10"> <input type="text" name="lastname" [(ngModel)]="salesPersonModel.lastName"> </div>
+    </div>
+
+    <div class="form-group row"> <label class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10"> <input type="email" name="email" [(ngModel)]="salesPersonModel.email"> </div>
+    </div>
+    <div class="form-group row"> <label class="col-sm-2 col-form-label">salary </label>
+        <div class="col-sm-10"> <input type="number" name="salary" [(ngModel)]="salesPersonModel.salary">
+        </div>
+    </div>
+    <div class="form-group row"> <label class="col-sm-2 col-form-label">Sales volume</label>
+        <div class="col-sm-10"> <input type="number" name="salesvolume" [(ngModel)]="salesPersonModel.salesVolume">
+        </div>
+    </div>
+    <br>
+    <div class="form-group">
+        <div class="col-lm-4"><button class="btn btn-primary" type="submit">Submit</button></div>
+    </div>
+    </form>
+</div>
