@@ -15,20 +15,20 @@ LastName = {{s1.lastName}} -->
             <th>Email</th>
             <th>salary</th>
             <th>Sales volume</th>
-            <th>Sales volume > 3000?</th>
+            <th>salary > 25000?</th>
         </tr>
     </thead>
     <tbody>
         
         <tr *ngFor="let person of salesPersonList"
-         [ngClass] ="{'metQuote' : person.salesVolume >= 3000, 'nonMetQuote' : person.salesVolume < 3000}">
+         [ngClass] ="{'metQuote' : person.salary >= 25000, 'nonMetQuote' : person.salary < 25000}">
             <td>{{person.firstName}}</td>
             <td>{{person.lastName}}</td>
             <td>{{person.email}}</td>
             <td>{{person.salary}}</td>
             <td>{{person.salesVolume}}</td>
             <td>
-            <div *ngIf="person.salesVolume >3000; else elseBlock">YES</div> 
+            <div *ngIf="person.salary >25000; else elseBlock">YES</div> 
             <ng-template #elseBlock>NO</ng-template>
             </td>
         </tr>
